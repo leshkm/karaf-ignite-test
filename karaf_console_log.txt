@@ -1,0 +1,381 @@
+vagrant@debian9:~$ ./apache-karaf-4.2.0-GQL/bin/karaf clean debug
+Listening for transport dt_socket at address: 5005
+        __ __                  ____      
+       / //_/____ __________ _/ __/      
+      / ,<  / __ `/ ___/ __ `/ /_        
+     / /| |/ /_/ / /  / /_/ / __/        
+    /_/ |_|\__,_/_/   \__,_/_/         
+
+  Apache Karaf (4.2.0)
+
+Hit '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+Hit '<ctrl-d>' or type 'system:shutdown' or 'logout' to shutdown Karaf.
+
+karaf@root()> bundle:list 
+START LEVEL 100 , List Threshold: 50
+ID │ State  │ Lvl │ Version │ Name
+───┼────────┼─────┼─────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+21 │ Active │  80 │ 4.2.0   │ Apache Karaf :: OSGi Services :: Event
+karaf@root()> feature:list
+Name                            │ Version          │ Required │ State       │ Repository                        │ Description
+────────────────────────────────┼──────────────────┼──────────┼─────────────┼───────────────────────────────────┼───────────────────────────────────────────────────
+hibernate-orm                   │ 5.2.9.Final      │          │ Uninstalled │ hibernate-osgi                    │ Combines all Hibernate core dependencies and requ
+hibernate-envers                │ 5.2.9.Final      │          │ Uninstalled │ hibernate-osgi                    │ Feature for easily adding Envers support to hiber
+hibernate-infinispan            │ 5.2.9.Final      │          │ Uninstalled │ hibernate-osgi                    │ Feature for easily adding Infinispan-based cachin
+hibernate-ehcache               │ 5.2.9.Final      │          │ Uninstalled │ hibernate-osgi                    │ Feature for easily adding Ehcache-based caching s
+transaction-api                 │ 1.2.0            │          │ Uninstalled │ enterprise-4.2.0                  │
+transaction-manager-geronimo    │ 3.1.3            │          │ Uninstalled │ enterprise-4.2.0                  │ Geronimo Transaction Manager
+transaction-manager-narayana    │ 5.7.2.Final      │          │ Uninstalled │ enterprise-4.2.0                  │ Narayana Transaction Manager
+transaction-manager-atomikos    │ 4.0.4            │          │ Uninstalled │ enterprise-4.2.0                  │ Atomikos Transaction Manager
+transaction                     │ 2.0.0            │          │ Uninstalled │ enterprise-4.2.0                  │ OSGi Transaction Manager
+connector                       │ 3.1.1            │          │ Uninstalled │ enterprise-4.2.0                  │ OSGi support for JCA Connector 1.6
+openjpa                         │ 2.4.2            │          │ Uninstalled │ enterprise-4.2.0                  │ Apache OpenJPA 2.4.x persistence engine support
+hibernate                       │ 5.2.9.Final      │          │ Uninstalled │ enterprise-4.2.0                  │ Hibernate JPA engine support
+eclipselink                     │ 2.7.1            │          │ Uninstalled │ enterprise-4.2.0                  │ Eclipselink JPA persistence engine support
+jndi                            │ 4.2.0            │          │ Uninstalled │ enterprise-4.2.0                  │ OSGi Service Registry JNDI access
+jdbc                            │ 4.2.0            │          │ Uninstalled │ enterprise-4.2.0                  │ JDBC service and commands
+jms                             │ 4.2.0            │          │ Uninstalled │ enterprise-4.2.0                  │ JMS service and commands
+application-without-isolation   │ 1.0.0            │          │ Uninstalled │ enterprise-4.2.0                  │ Provide EBA archive support
+subsystems                      │ 2.0.10           │          │ Uninstalled │ enterprise-4.2.0                  │ Support for OSGi subsystems
+pax-transx-tm-api               │ 0.2.0            │          │ Uninstalled │ pax-transx-0.2.0                  │
+pax-transx-tm-geronimo          │ 0.2.0            │          │ Uninstalled │ pax-transx-0.2.0                  │
+pax-transx-tm-atomikos          │ 0.2.0            │          │ Uninstalled │ pax-transx-0.2.0                  │
+pax-transx-tm-narayana          │ 0.2.0            │          │ Uninstalled │ pax-transx-0.2.0                  │
+pax-transx-tm                   │ 0.2.0            │          │ Uninstalled │ pax-transx-0.2.0                  │
+pax-transx-connector            │ 0.2.0            │          │ Uninstalled │ pax-transx-0.2.0                  │
+pax-transx-jdbc                 │ 0.2.0            │          │ Uninstalled │ pax-transx-0.2.0                  │
+pax-transx-jms                  │ 0.2.0            │          │ Uninstalled │ pax-transx-0.2.0                  │
+pax-jms-pool                    │ 0.3.0            │          │ Uninstalled │ pax-jms-0.3.0                     │
+pax-jms-ibmmq                   │ 0.3.0            │          │ Uninstalled │ pax-jms-0.3.0                     │
+pax-cdi                         │ 1.0.0            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Provide CDI support
+pax-cdi-weld                    │ 1.0.0            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Weld CDI 1.2 support
+pax-cdi-openwebbeans            │ 1.0.0            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ OpenWebBeans CDI support
+pax-cdi-web                     │ 1.0.0            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Web CDI support
+pax-cdi-web-weld                │ 1.0.0            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Weld Web CDI support
+pax-cdi-web-weld-undertow       │ 1.0.0            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Weld Web CDI / Undertow support
+pax-cdi-web-weld-jetty          │ 1.0.0            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Weld Web CDI / Jetty support
+pax-cdi-web-openwebbeans        │ 1.0.0            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ OpenWebBeans Web CDI support
+deltaspike-core                 │ 1.8.1            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Apache Deltaspike core support
+deltaspike-jpa                  │ 1.8.1            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Apache Deltaspike jpa support
+deltaspike-proxy                │ 1.8.1            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Apache Deltaspike proxy support
+deltaspike-partial-bean         │ 1.8.1            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Apache Deltaspike partial bean support
+deltaspike-data                 │ 1.8.1            │          │ Uninstalled │ org.ops4j.pax.cdi-1.0.0           │ Apache Deltaspike data support
+framework-security              │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ OSGi Security for Karaf
+service-security                │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Services Security for Karaf
+aries-proxy                     │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Aries Proxy
+aries-blueprint                 │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Aries Blueprint
+feature                         │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Features Support
+shell                           │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Karaf Shell
+shell-compat                    │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Karaf Shell Compatibility
+deployer                        │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Karaf Deployer
+wrapper                         │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Provide OS integration
+service-wrapper                 │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Provide OS integration (alias to wrapper feature)
+obr                             │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Provide OSGi Bundle Repository (OBR) support
+bundle                          │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Bundle support
+config                          │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide OSGi ConfigAdmin support
+diagnostic                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Diagnostic support
+instance                        │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Instance support
+jaas                            │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide JAAS support
+log                             │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Log support
+package                         │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Package commands and mbeans
+service                         │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Service support
+system                          │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide System support
+http                            │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Implementation of the OSGI HTTP Service
+httplite                        │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Felix Httplite OSGi HTTP Service
+pax-http-service                │ 7.0.0            │          │ Uninstalled │ standard-4.2.0                    │ Pax-Web OSGi HTTP Service
+http-whiteboard                 │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Provide HTTP Whiteboard pattern support
+war                             │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Turn Karaf as a full WebContainer
+jetty                           │ 9.4.6.v20170531  │          │ Uninstalled │ standard-4.2.0                    │
+jetty                           │ 8.1.14.v20131031 │          │ Uninstalled │ standard-4.2.0                    │
+kar                             │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide KAR (KARaf archive) support
+webconsole                      │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Base support of the Karaf WebConsole
+ssh                             │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide a SSHd server on Karaf
+management                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide a JMX MBeanServer and a set of MBeans in
+scheduler                       │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Provide a scheduler service in Karaf to fire even
+eventadmin                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ OSGi Event Admin service specification for event-
+jasypt-encryption               │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Advanced encryption support for Karaf security
+scr                             │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Declarative Service support
+blueprint-web                   │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Provides an OSGI-aware Servlet ContextListener fo
+wrap                            │ 2.5.4            │ x        │ Started     │ standard-4.2.0                    │ Wrap URL handler
+profile                         │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Profiles support
+jolokia                         │ 1.3.5            │          │ Uninstalled │ standard-4.2.0                    │ Jolokia monitoring support
+maven                           │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Commands for Maven configuration of services from
+audit-log                       │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Security audit logging
+documentation                   │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Documentation of Karaf project in HTML
+standard                        │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Wrap feature describing all features part of a st
+minimal                         │ 4.2.0            │          │ Uninstalled │ standard-4.2.0                    │ Wrap feature describing all features part of a mi
+pax-web-core                    │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │ Provide Core pax-web bundles
+pax-jetty                       │ 9.4.6.v20170531  │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │ Provide Jetty engine support
+pax-jetty-http2                 │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │ Optional additional feature to run Jetty with SPDY
+pax-http-jetty                  │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │
+pax-http                        │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │ Implementation of the OSGI HTTP Service
+pax-http-whiteboard             │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │ Provide HTTP Whiteboard pattern support
+pax-war                         │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │ Provide support of a full WebContainer
+pax-http-tomcat                 │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │ Provide Tomcat support
+pax-war-tomcat                  │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │
+pax-jsf-support                 │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │
+pax-jsf-resources-support       │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │ Provide sharing of resources according to Servlet
+undertow                        │ 1.4.23.Final     │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │
+pax-http-undertow               │ 7.0.0            │          │ Uninstalled │ org.ops4j.pax.web-7.0.0           │
+spring                          │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x support
+spring-aspects                  │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x AOP support
+spring-instrument               │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x Instrument support
+spring-jdbc                     │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x JDBC support
+spring-jms                      │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x JMS support
+spring-test                     │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x Test support
+spring-orm                      │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x ORM support
+spring-oxm                      │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x OXM support
+spring-tx                       │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x Transaction (TX) support
+spring-web                      │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x Web support
+spring-websocket                │ 5.0.4.RELEASE_1  │          │ Uninstalled │ spring-4.2.0                      │ Spring 5.0.x WebSocket support
+aries-blueprint-spring          │ 0.0.0            │          │ Uninstalled │ spring-4.2.0                      │
+pax-jdbc-spec                   │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides OSGi JDBC Service spec
+pax-jdbc                        │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Service support
+pax-jdbc-config                 │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Config support
+pax-jdbc-db2                    │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC DB2 DataSourceFactory
+pax-jdbc-teradata               │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Teradata DataSourceFactory
+pax-jdbc-derby                  │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Derbi Embedded DataSourceFactory
+pax-jdbc-derbyclient            │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Derbi Client DataSourceFactory
+pax-jdbc-h2                     │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC H2 DataSourceFactory
+pax-jdbc-hsqldb                 │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC HSQLDB DataSourceFactory
+pax-jdbc-mariadb                │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Mariadb DataSourceFactory
+pax-jdbc-mysql                  │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC MySQL DataSourceFactory
+pax-jdbc-oracle                 │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Oracle DataSourceFactory
+pax-jdbc-postgresql             │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC PostgreSQL DataSourceFactory
+pax-jdbc-sqlite                 │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC SQLite DataSourceFactory
+pax-jdbc-mssql                  │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC MSSQL DataSourceFactory
+pax-jdbc-jtds                   │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC jTDS DataSourceFactory
+pax-jdbc-pool-dbcp2             │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Pooling DataSourceFactory
+pax-jdbc-pool-c3p0              │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Pooling using C3P0
+pax-jdbc-pool-hikaricp          │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Pooling DataSourceFactory using Hik
+pax-jdbc-pool-aries             │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Pooling DataSourceFactory using Ari
+pax-jdbc-pool-narayana          │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Pooling DataSourceFactory using Nar
+pax-jdbc-pool-transx            │ 1.2.0            │          │ Uninstalled │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Pooling DataSourceFactory using Pax
+hibernate-validator             │ 6.0.9.Final      │          │ Uninstalled │ hibernate-validator-osgi-features │
+hibernate-validator-jsoup       │ 6.0.9.Final      │          │ Uninstalled │ hibernate-validator-osgi-features │
+hibernate-validator-joda-time   │ 6.0.9.Final      │          │ Uninstalled │ hibernate-validator-osgi-features │
+hibernate-validator-javax-money │ 6.0.9.Final      │          │ Uninstalled │ hibernate-validator-osgi-features │
+hibernate-validator-groovy      │ 6.0.9.Final      │          │ Uninstalled │ hibernate-validator-osgi-features │
+hibernate-validator-paranamer   │ 6.0.9.Final      │          │ Uninstalled │ hibernate-validator-osgi-features │
+jpa                             │ 2.6.1            │          │ Uninstalled │ aries-jpa-2.6.1                   │ OSGi Persistence Container
+karaf@root()> feature:list | grep "Started"
+feature                         │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Features Support
+shell                           │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Karaf Shell
+deployer                        │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Karaf Deployer
+bundle                          │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Bundle support
+config                          │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide OSGi ConfigAdmin support
+diagnostic                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Diagnostic support
+instance                        │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Instance support
+jaas                            │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide JAAS support
+log                             │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Log support
+package                         │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Package commands and mbeans
+service                         │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Service support
+system                          │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide System support
+kar                             │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide KAR (KARaf archive) support
+ssh                             │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide a SSHd server on Karaf
+management                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide a JMX MBeanServer and a set of MBeans in
+eventadmin                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ OSGi Event Admin service specification for event-
+wrap                            │ 2.5.4            │ x        │ Started     │ standard-4.2.0                    │ Wrap URL handler
+karaf@root()> feature:repo-add mvn:ua.mohylin.test.ignite/ki-test-features/0.0.1/xml/features
+Adding feature url mvn:ua.mohylin.test.ignite/ki-test-features/0.0.1/xml/features
+karaf@root()> feature:install ki-test-core
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.ignite.internal.util.GridUnsafe$2 (jar:bundle://85.0:0/!/) to field java.nio.Buffer.address
+WARNING: Please consider reporting this to the maintainers of org.apache.ignite.internal.util.GridUnsafe$2
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+[16:11:32] (wrn) Failed to resolve IGNITE_HOME automatically for class codebase [class=class o.a.i.i.util.IgniteUtils, e=URI is not hierarchical]
+
+[16:11:32]    __________  ________________ 
+[16:11:32]   /  _/ ___/ |/ /  _/_  __/ __/ 
+[16:11:32]  _/ // (7 7    // /  / / / _/   
+[16:11:32] /___/\___/_/|_/___/ /_/ /___/  
+[16:11:32] 
+[16:11:32] ver. 2.7.0#20181130-sha1:256ae401
+[16:11:32] 2018 Copyright(C) Apache Software Foundation
+[16:11:32] 
+[16:11:32] Ignite documentation: http://ignite.apache.org
+[16:11:32] 
+[16:11:32] Quiet mode.
+[16:11:32]   ^-- Logging by 'JavaLogger [quiet=true, config=null]'
+[16:11:32]   ^-- To see **FULL** console log here add -DIGNITE_QUIET=false or "-v" to ignite.{sh|bat}
+[16:11:32] 
+[16:11:32] OS: Linux 4.9.0-8-amd64 amd64
+[16:11:32] VM information: OpenJDK Runtime Environment 10+44 "Oracle Corporation" OpenJDK 64-Bit Server VM 10+44
+[16:11:33] Please set system property '-Djava.net.preferIPv4Stack=true' to avoid possible problems in mixed environments.
+[16:11:33] Initial heap size is 128MB (should be no less than 512MB, use -Xms512m -Xmx512m).
+[16:11:33] Configured plugins:
+[16:11:33]   ^-- None
+[16:11:33] 
+[16:11:33] Configured failure handler: [hnd=StopNodeOrHaltFailureHandler [tryStop=false, timeout=0, super=AbstractFailureHandler [ignoredFailureTypes=[SYSTEM_WORKER_BLOCKED]]]]
+[16:11:33] Message queue limit is set to 0 which may lead to potential OOMEs when running cache operations in FULL_ASYNC or PRIMARY_SYNC modes due to message queues growth on sender and receiver sides.
+[16:11:34] Security status [authentication=off, tls/ssl=off]
+[16:11:43] Performance suggestions for grid  (fix if possible)
+[16:11:43] To disable, set -DIGNITE_PERFORMANCE_SUGGESTIONS_DISABLED=true
+[16:11:43]   ^-- Switch to the most recent 1.8 JVM version
+[16:11:43]   ^-- Set max direct memory size if getting 'OOME: Direct buffer memory' (add '-XX:MaxDirectMemorySize=<size>[g|G|m|M|k|K]' to JVM options)
+[16:11:43]   ^-- Disable processing of calls to System.gc() (add '-XX:+DisableExplicitGC' to JVM options)
+[16:11:43] Refer to this page for more performance suggestions: https://apacheignite.readme.io/docs/jvm-and-system-tuning
+[16:11:43] 
+[16:11:43] To start Console Management & Monitoring run ignitevisorcmd.{sh|bat}
+[16:11:43] Data Regions Configured:
+[16:11:43]   ^-- default [initSize=256.0 MiB, maxSize=1.2 GiB, persistence=false]
+[16:11:43] 
+[16:11:43] Ignite node started OK (id=2331c5e8)
+[16:11:43] Topology snapshot [ver=1, locNode=2331c5e8, servers=1, clients=0, state=ACTIVE, CPUs=2, offheap=1.2GB, heap=0.5GB]
+karaf@root()> feature:list | grep "Started"
+transaction-api                          │ 1.2.0            │          │ Started     │ enterprise-4.2.0                  │
+jdbc                                     │ 4.2.0            │          │ Started     │ enterprise-4.2.0                  │ JDBC service and commands
+pax-transx-tm-api                        │ 0.2.0            │          │ Started     │ pax-transx-0.2.0                  │
+ki-test-core                             │ 0.0.1            │ x        │ Started     │ ki-test-features                  │ graphql core sandbox
+ignite-core                              │ 2.7.0            │          │ Started     │ ignite                            │ Apache Ignite :: Core
+feature                                  │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Features Support
+shell                                    │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Karaf Shell
+deployer                                 │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Karaf Deployer
+bundle                                   │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Bundle support
+config                                   │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide OSGi ConfigAdmin support
+diagnostic                               │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Diagnostic support
+instance                                 │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Instance support
+jaas                                     │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide JAAS support
+log                                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Log support
+package                                  │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Package commands and mbeans
+service                                  │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Service support
+system                                   │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide System support
+jetty                                    │ 9.4.6.v20170531  │          │ Started     │ standard-4.2.0                    │
+kar                                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide KAR (KARaf archive) support
+ssh                                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide a SSHd server on Karaf
+management                               │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide a JMX MBeanServer and a set of MBeans in
+eventadmin                               │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ OSGi Event Admin service specification for event-
+scr                                      │ 4.2.0            │          │ Started     │ standard-4.2.0                    │ Declarative Service support
+wrap                                     │ 2.5.4            │ x        │ Started     │ standard-4.2.0                    │ Wrap URL handler
+xml-specs-api                            │ 2.9.0            │          │ Started     │ camel-2.22.1                      │
+camel-core                               │ 2.22.1           │          │ Started     │ camel-2.22.1                      │
+camel-jetty9                             │ 2.22.1           │          │ Started     │ camel-2.22.1                      │
+camel-jetty                              │ 2.22.1           │          │ Started     │ camel-2.22.1                      │
+pax-jdbc-spec                            │ 1.2.0            │          │ Started     │ org.ops4j.pax.jdbc-1.2.0          │ Provides OSGi JDBC Service spec
+pax-jdbc                                 │ 1.2.0            │          │ Started     │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Service support
+pax-jdbc-config                          │ 1.2.0            │          │ Started     │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Config support
+pax-jdbc-postgresql                      │ 1.2.0            │          │ Started     │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC PostgreSQL DataSourceFactory
+pax-jdbc-pool-hikaricp                   │ 1.2.0            │          │ Started     │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Pooling DataSourceFactory using Hik
+karaf@root()> bundle:list
+START LEVEL 100 , List Threshold: 50
+ ID │ State    │ Lvl │ Version            │ Name
+────┼──────────┼─────┼────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ 21 │ Active   │  80 │ 4.2.0              │ Apache Karaf :: OSGi Services :: Event
+ 44 │ Active   │  80 │ 1.9.2.1            │ Apache ServiceMix :: Bundles :: jasypt
+ 45 │ Active   │  80 │ 1.2.0              │ OPS4J Pax JDBC Generic Driver Extender
+ 46 │ Active   │  80 │ 1.2.0              │ OPS4J Pax JDBC Config
+ 47 │ Active   │  80 │ 1.2.0              │ OPS4J Pax JDBC Pooling Support Base
+ 48 │ Active   │  80 │ 1.0.0.201505202023 │ org.osgi:org.osgi.service.jdbc
+ 49 │ Active   │  80 │ 2.9.6              │ Jackson-annotations
+ 50 │ Active   │  80 │ 2.9.6              │ Jackson-core
+ 51 │ Active   │  80 │ 2.9.6              │ jackson-databind
+ 52 │ Active   │  80 │ 2.9.6              │ Jackson datatype: jdk8
+ 53 │ Active   │  80 │ 2.9.6              │ Jackson datatype: JSR310
+ 54 │ Active   │  80 │ 2.9.6              │ Jackson module: JAXB Annotations
+ 55 │ Active   │  80 │ 2.9.6              │ Jackson-module-parameter-names
+ 56 │ Active   │  80 │ 26.0.0.jre         │ Guava: Google Core Libraries for Java
+ 57 │ Active   │  80 │ 9.0                │ graphql-java
+ 58 │ Active   │  80 │ 2.4.11             │ HikariCP
+ 59 │ Active   │  80 │ 1.3.2              │ javax.annotation API
+ 60 │ Active   │  80 │ 1.1.0              │ JSR107 API and SPI
+ 61 │ Active   │  80 │ 3.0.0              │ Expression Language 3.0 API
+ 62 │ Active   │  80 │ 1.2.0              │ CDI APIs
+ 63 │ Active   │  80 │ 1.2                │ javax.interceptor API
+ 66 │ Active   │  80 │ 1.2                │ javax.transaction API
+ 68 │ Active   │  80 │ 2.2.12             │ jaxb-api
+ 69 │ Active   │  80 │ 3.11.3             │ jOOQ
+ 70 │ Active   │  80 │ 0.0.1              │ ki-test-core
+ 71 │ Active   │  80 │ 4.7.1              │ ANTLR 4 Runtime
+ 73 │ Active   │  80 │ 2.22.1             │ camel-commands-core
+ 74 │ Active   │  50 │ 2.22.1             │ camel-core
+ 75 │ Active   │  80 │ 2.22.1             │ camel-core-osgi
+ 76 │ Active   │  50 │ 2.22.1             │ camel-http-common
+ 77 │ Active   │  80 │ 2.22.1             │ camel-jackson
+ 78 │ Active   │  50 │ 2.22.1             │ camel-jetty-common
+ 79 │ Active   │  50 │ 2.22.1             │ camel-jetty9
+ 80 │ Active   │  80 │ 2.22.1             │ camel-karaf-commands
+ 81 │ Active   │  80 │ 2.6.0              │ Apache Commons IO
+ 82 │ Active   │  80 │ 3.8.1              │ Apache Commons Lang
+ 85 │ Active   │  80 │ 2.7.0              │ ignite-core, Fragments: 86
+ 86 │ Resolved │  80 │ 2.7.0              │ ignite-osgi, Hosts: 85
+ 87 │ Active   │  80 │ 4.2.0              │ Apache Karaf :: JDBC :: Core
+ 90 │ Active   │  80 │ 1.0.0.2            │ Apache ServiceMix :: Bundles :: javax.inject
+ 92 │ Active   │  80 │ 2.0.2              │ java-dataloader
+119 │ Active   │  80 │ 0.9.13             │ jOOL
+120 │ Active   │  80 │ 3.0.2              │ FindBugs-jsr305
+124 │ Active   │  80 │ 1.2.0              │ OPS4J Pax JDBC Pooling HikariCP
+125 │ Active   │  80 │ 0.2.0              │ pax-transx-tm-api
+126 │ Active   │  80 │ 9.4.1212.jre7      │ PostgreSQL JDBC Driver JDBC41
+127 │ Active   │  80 │ 1.0.2              │ reactive-streams
+130 │ Active   │  80 │ 0                  │ wrap_file__home_vagrant_.m2_repository_com_google_errorprone_error_prone_annotations_2.1.3_error_prone_annotations-2.1.3.jar
+131 │ Active   │  80 │ 0                  │ wrap_file__home_vagrant_.m2_repository_com_google_j2objc_j2objc-annotations_1.1_j2objc-annotations-1.1.jar
+132 │ Active   │  80 │ 0                  │ wrap_file__home_vagrant_.m2_repository_com_newrelic_agent_java_newrelic-api_4.5.0_newrelic-api-4.5.0.jar
+133 │ Active   │  80 │ 0                  │ wrap_file__home_vagrant_.m2_repository_org_checkerframework_checker-qual_2.5.2_checker-qual-2.5.2.jar
+134 │ Active   │  80 │ 0                  │ wrap_file__home_vagrant_.m2_repository_org_codehaus_mojo_animal-sniffer-annotations_1.14_animal-sniffer-annotations-1.14.jar
+135 │ Active   │  80 │ 0                  │ wrap_file__home_vagrant_.m2_repository_org_immutables_value_2.7.1_value-2.7.1.jar
+karaf@root()> bundle:list | grep "ignite"
+ 85 │ Active   │  80 │ 2.7.0              │ ignite-core, Fragments: 86
+ 86 │ Resolved │  80 │ 2.7.0              │ ignite-osgi, Hosts: 85
+karaf@root()> system:shutdown 
+Confirm: halt instance root (yes/no): yes
+karaf@root()> [16:12:39] Ignite node stopped OK [uptime=00:00:56.159]                                                                                                                                              
+
+vagrant@debian9:~$ ./apache-karaf-4.2.0-GQL/bin/karaf debug
+Listening for transport dt_socket at address: 5005
+        __ __                  ____      
+       / //_/____ __________ _/ __/      
+      / ,<  / __ `/ ___/ __ `/ /_        
+     / /| |/ /_/ / /  / /_/ / __/        
+    /_/ |_|\__,_/_/   \__,_/_/         
+
+  Apache Karaf (4.2.0)
+
+Hit '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+Hit '<ctrl-d>' or type 'system:shutdown' or 'logout' to shutdown Karaf.
+
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.ignite.internal.util.GridUnsafe$2 (jar:bundle://85.0:0/!/) to field java.nio.Buffer.address
+WARNING: Please consider reporting this to the maintainers of org.apache.ignite.internal.util.GridUnsafe$2
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+karaf@root()> bundle:list | grep "ignite"
+ 85 │ Active    │  80 │ 2.7.0              │ ignite-core
+ 86 │ Installed │  80 │ 2.7.0              │ ignite-osgi
+karaf@root()> feature:list | grep "Started"
+transaction-api                          │ 1.2.0            │          │ Started     │ enterprise-4.2.0                  │
+jdbc                                     │ 4.2.0            │          │ Started     │ enterprise-4.2.0                  │ JDBC service and commands
+pax-transx-tm-api                        │ 0.2.0            │          │ Started     │ pax-transx-0.2.0                  │
+ki-test-core                             │ 0.0.1            │ x        │ Started     │ ki-test-features                  │ graphql core sandbox
+ignite-core                              │ 2.7.0            │          │ Started     │ ignite                            │ Apache Ignite :: Core
+feature                                  │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Features Support
+shell                                    │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Karaf Shell
+deployer                                 │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Karaf Deployer
+bundle                                   │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Bundle support
+config                                   │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide OSGi ConfigAdmin support
+diagnostic                               │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Diagnostic support
+instance                                 │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Instance support
+jaas                                     │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide JAAS support
+log                                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Log support
+package                                  │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Package commands and mbeans
+service                                  │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide Service support
+system                                   │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide System support
+jetty                                    │ 9.4.6.v20170531  │          │ Started     │ standard-4.2.0                    │
+kar                                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide KAR (KARaf archive) support
+ssh                                      │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide a SSHd server on Karaf
+management                               │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ Provide a JMX MBeanServer and a set of MBeans in
+eventadmin                               │ 4.2.0            │ x        │ Started     │ standard-4.2.0                    │ OSGi Event Admin service specification for event-
+scr                                      │ 4.2.0            │          │ Started     │ standard-4.2.0                    │ Declarative Service support
+wrap                                     │ 2.5.4            │ x        │ Started     │ standard-4.2.0                    │ Wrap URL handler
+xml-specs-api                            │ 2.9.0            │          │ Started     │ camel-2.22.1                      │
+camel-core                               │ 2.22.1           │          │ Started     │ camel-2.22.1                      │
+camel-jetty9                             │ 2.22.1           │          │ Started     │ camel-2.22.1                      │
+camel-jetty                              │ 2.22.1           │          │ Started     │ camel-2.22.1                      │
+pax-jdbc-spec                            │ 1.2.0            │          │ Started     │ org.ops4j.pax.jdbc-1.2.0          │ Provides OSGi JDBC Service spec
+pax-jdbc                                 │ 1.2.0            │          │ Started     │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Service support
+pax-jdbc-config                          │ 1.2.0            │          │ Started     │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Config support
+pax-jdbc-postgresql                      │ 1.2.0            │          │ Started     │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC PostgreSQL DataSourceFactory
+pax-jdbc-pool-hikaricp                   │ 1.2.0            │          │ Started     │ org.ops4j.pax.jdbc-1.2.0          │ Provides JDBC Pooling DataSourceFactory using Hik
+karaf@root()>                                                                                                                   
