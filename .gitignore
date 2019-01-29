@@ -1,0 +1,37 @@
+# Maven build dir
+target
+
+# Vim swap files
+*.sw?
+
+# Temp bullshit
+.resourceCache/
+
+# Jshell bullshit
+jshell.history
+
+# Netbeans bullshit
+nbactions.xml
+/camel/nbproject/
+.nb-gradle-properties
+.nb-gradle/
+Jenkinsfile.groovy
+
+# Intellij bullshit
+*.iml
+.idea/
+
+# Maven versions plugin
+pom.xml.versionsBackup
+
+# Gradle build dir and bullshit
+build/
+gradle.log
+.gradle
+gradle/
+gradlew.bat
+/.nb-gradle/
+
+out/
+build/
+generated/

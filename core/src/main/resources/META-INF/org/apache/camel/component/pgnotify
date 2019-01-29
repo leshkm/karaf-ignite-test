@@ -1,0 +1,5 @@
+#
+# Export postgresql polling notify component to camel
+#
+
+class=se.reseguiden.graphql.camel.pgnotify.PGNotifyComponent

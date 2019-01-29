@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="gate-${project.version}">
+    <repository>mvn:org.apache.camel.karaf/apache-camel/${camel.version}/xml/features</repository>
+    <feature name="${project.artifactId}" version="${project.version}" description="Required features to deploy gate backend">
+        <feature dependency="true" version="${camel.version}">camel-core</feature>
+        <feature dependency="true" version="${camel.version}">camel-catalog</feature>
+        <feature dependency="true" version="${camel.version}">camel-websocket</feature>
+        <feature dependency="true" version="${camel.version}">camel-jetty</feature>
+        <feature dependency="true" version="${camel.version}">camel-jetty9</feature>
+        <feature dependency="true" version="${camel.version}">camel-gson</feature>
+        <feature dependency="true" version="${pax.jdbc.version}">pax-jdbc</feature>
+        <feature dependency="true" version="${pax.jdbc.version}">pax-jdbc-config</feature>
+        <feature dependency="true" version="${pax.jdbc.version}">pax-jdbc-spec</feature>
+        <feature dependency="true" version="${pax.jdbc.version}">pax-jdbc-postgresql</feature>
+        <feature dependency="true" version="${hibernate.validator.version}">hibernate-validator</feature>
+        <feature dependency="true" version="${karaf.version}">jdbc</feature>
+        <feature dependency="true" version="${karaf.version}">scr</feature>
+        <bundle>mvn:com.google.guava/guava/20.0</bundle> <!-- needed by swagger -->
+    </feature>
+</features>

@@ -1,0 +1,61 @@
+plugins {
+    id 'com.github.lburgazzoli.karaf' version '0.1.1'
+}
+
+apply plugin: 'com.github.lburgazzoli.karaf'
+
+configurations {
+    testIgniteCore
+}
+
+karaf {
+    features {
+        xsdVersion = '1.3.0'
+
+        repository "mvn:org.apache.camel.karaf/apache-camel/${camelVersion}/xml/features"
+        repository "mvn:org.apache.ignite/ignite-osgi-karaf/${igniteVersion}/xml/features"
+
+        feature {
+            name = 'ki-test-core'
+            description = 'graphql core sandbox'
+            configuration 'testIgniteCore'
+
+
+            feature 'scr'
+            feature 'camel-core'
+            feature 'camel-jetty'
+
+            feature 'transaction-api'
+
+            feature 'jdbc'
+            feature 'pax-jdbc-config'
+            feature 'pax-jdbc-postgresql'
+            feature 'pax-jdbc-pool-hikaricp'
+
+            feature 'ignite-core'
+
+
+            //feature('graphql-indexing') {
+            //    dependency = true
+            //}
+            //feature('graphql-camel-elasticsearch-rest') {
+            //    dependency = true
+            //}
+        }
+    }
+
+    if (project.hasProperty('buildKarafAssembly') && project.ext.get('buildKarafAssembly') == 'true') {
+        // assemble karaf archive for docker
+        kar {
+            archiveName = "testIgnite-${features.version}"
+        }
+    }
+}
+
+description = 'testIgnite-features'
+
+dependencies {
+    testIgniteCore    (project(':ki-test-core')) {
+        exclude group: 'se.reseguiden.gate'
+    }
+}

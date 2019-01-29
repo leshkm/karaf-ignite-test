@@ -1,0 +1,184 @@
+plugins {
+    id 'biz.aQute.bnd.builder' version '4.0.0'
+    id 'org.sonarqube' version '2.6.2'
+    id "com.diffplug.gradle.spotless" version "3.13.0"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.10'
+}
+
+allprojects  {
+    apply plugin: 'maven'
+    apply plugin: 'jacoco'
+
+    apply plugin: 'project-report'
+    group = 'ua.mohylin.test.ignite'
+}
+
+subprojects {
+    ext {
+        immutablesVersion = '2.7.1'
+
+        jacksonVersion = '2.9.6'
+        gsonVersion = '2.8.5'
+        guavaVersion = '26.0-jre'
+
+        camelVersion = '2.22.1'
+        karafVersion = '4.2.1'
+        igniteVersion = '2.7.0'
+        asmVersion = '6.2.1'
+
+        validatorVersion = '4.3.1.Final' // hibernate validator
+        validationVersion = '1.1.0.Final' // validation api
+
+        commonsIOVersion = '2.6'
+        commonsCodecVersion = '1.11'
+        commonsLang3Version = '3.8.1'
+
+        paxLoggingVersion = '1.10.1'
+
+        osgiCoreVersion = '6.0.0'
+        osgiCompendiumVersion = '6.0.0'
+
+        jUnitVersion = '4.12'
+    }
+
+    apply plugin: 'java-library'
+
+    sourceCompatibility = 10
+    targetCompatibility = 10
+    tasks.withType(JavaCompile) {
+        options.warnings = false
+        options.deprecation = false
+        options.encoding = 'UTF-8'
+        options.incremental = true
+    }
+
+    configurations {
+        archives
+    }
+
+    apply plugin: 'com.diffplug.gradle.spotless'
+
+    spotless {
+        java {
+            target 'src/**/*.java'
+
+            enforceCheck true
+
+            trimTrailingWhitespace()
+            removeUnusedImports()
+            endWithNewline()
+            importOrder 'java', 'javax', 'org', 'com', 'se', '', 'static '
+        }
+        format 'misc', {
+            target '**/*.gradle', '**/*.md', '**/.gitignore'
+
+            trimTrailingWhitespace()
+            indentWithSpaces()
+            endWithNewline()
+        }
+    }
+
+    sonarqube {
+        properties {
+            property 'sonar.jacoco.reportPaths', "${buildDir}/jacoco/test.exec"
+            if (project.hasProperty('sonarqubeOverrideInclusions')) {
+                def fileCollection = sourceSets.main.allJava.getSourceDirectories();
+
+                def relativeSourcePath = projectDir.toPath().getParent()
+                    .relativize(fileCollection.getSingleFile().toPath())
+
+                def filteredInclusions = sonarqubeOverrideInclusions.tokenize(',')
+                    .collect({ new File(it).toPath() })
+                    .findAll({ it.startsWith(relativeSourcePath) })
+                    .collect({ it.subpath(1, it.getNameCount()) })
+
+                if (filteredInclusions) {
+                    property 'sonar.inclusions', filteredInclusions.join(',')
+                } else {
+                    skipProject = true
+                }
+
+            }
+        }
+    }
+
+    jacoco {
+        toolVersion = '0.8.2'
+    }
+
+    tasks.withType(Test) {
+        exclude '**/*IT*' // exclude failing integration tests
+        afterTest { descriptor, result ->
+            logger.lifecycle(
+                "    " + descriptor.name + " " + result +
+                " (" + (result.endTime - result.startTime) + "ms)"
+            )
+        }
+        testLogging {
+            // only show test class names
+            displayGranularity 2
+            minGranularity 2
+            maxGranularity 2
+
+            info {
+                showExceptions true
+                showCauses true
+                exceptionFormat 'full'
+                displayGranularity 2
+                minGranularity 0
+                maxGranularity 3
+                showStandardStreams = true
+            }
+
+            events "started", "passed", "skipped", "failed"
+        }
+        systemProperty 'org.ops4j.pax.logging.DefaultServiceLog.level', 'NONE'
+
+        // listen to standard out and standard error of the test JVM(s)
+        onOutput { descriptor, event ->
+            logger.lifecycle(" " + event.message )
+        }
+    }
+
+    apply plugin: 'biz.aQute.bnd.builder'
+    apply plugin: 'maven-publish'
+
+    publishing {
+        publications {
+            libraryJar(MavenPublication) {
+                from components.java
+            }
+        }
+    }
+
+    publishing {
+        repositories {
+            maven {
+                if (project.version.endsWith('-SNAPSHOT')) {
+                    url "https://artifactory.reseguiden.se/artifactory/libs-snapshot-local"
+                } else {
+                    url "https://artifactory.reseguiden.se/artifactory/libs-release-local"
+                }
+
+                credentials {
+                    username "$artifactoryUsername"
+                    password "$artifactoryPassword"
+                }
+            }
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://artifactory.reseguiden.se/artifactory/libs-release"
+            credentials {
+                username "$artifactoryUsername"
+                password "$artifactoryPassword"
+            }
+        }
+    }
+}

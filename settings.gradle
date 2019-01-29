@@ -1,0 +1,7 @@
+rootProject.name = 'parent'
+include ':ki-test-core'
+include ':ki-test-features'
+
+project(':ki-test-core').projectDir = "$rootDir/core" as File
+project(':ki-test-features').projectDir = "$rootDir/features" as File
+
