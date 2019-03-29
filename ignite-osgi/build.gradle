@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+}
+
+//project.name='ignite-osgi-graphql'
+version '2.7.0'
+
+description = 'ignite-osgi-graphql'
+
+//sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation group: 'org.apache.ignite', name: 'ignite-core', version: '2.7.0'
+    implementation group: 'org.osgi', name: 'org.osgi.core', version: '5.0.0'
+    compileOnly group: 'log4j', name: 'log4j', version: '1.2.17'
+
+
+    // TEST
+    testCompile group: 'javax.inject', name: 'javax.inject', version: '1'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.ops4j.pax.exam', name: 'pax-exam', version: '4.6.0'
+    testCompile group: 'org.ops4j.pax.exam', name: 'pax-exam-junit4', version: '4.6.0'
+    testCompile group: 'org.ops4j.pax.exam', name: 'pax-exam-container-karaf', version: '4.6.0'
+    testCompile group: 'org.apache.karaf', name: 'apache-karaf', version: '4.0.2', ext: 'tar.gz'
+    testCompile group: 'org.apache.karaf.features', name: 'org.apache.karaf.features.core', version: '4.0.2'
+    testCompile group: 'org.ops4j.pax.url', name: 'pax-url-aether', version: '2.4.3'
+}
+
+jar {
+    manifest {
+        attributes(
+                '-noee': 'true',
+                '-exportcontents': '*',
+                // TODO SHRINK ME
+                'Import-Package': '''
+                org.apache.ignite,
+                org.apache.ignite.configuration,
+                org.apache.ignite.internal.util,
+                org.apache.ignite.internal.util.tostring,
+                org.apache.ignite.internal.util.typedef.internal,
+                org.jsr166,
+                org.osgi.framework,
+                !org.apache.ignite.osgi.classloaders,
+                *
+            ''',
+            'Fragment-Host':'org.apache.ignite.ignite-core',
+            'Export-Package': '''
+                org.apache.ignite.osgi.classloaders,
+                org.apache.ignite.osgi
+            '''
+
+        )
+    }
+}

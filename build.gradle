@@ -55,6 +55,17 @@ subprojects {
         options.incremental = true
     }
 
+    apply plugin: "idea"
+
+    idea {
+        module {
+            sourceDirs += file('src/main/generated')
+            generatedSourceDirs += file('src/main/generated')
+
+            testSourceDirs += file('src/test/generated_tests')
+        }
+    }
+
     configurations {
         archives
     }
@@ -154,31 +165,8 @@ subprojects {
         }
     }
 
-    publishing {
-        repositories {
-            maven {
-                if (project.version.endsWith('-SNAPSHOT')) {
-                    url "https://artifactory.reseguiden.se/artifactory/libs-snapshot-local"
-                } else {
-                    url "https://artifactory.reseguiden.se/artifactory/libs-release-local"
-                }
-
-                credentials {
-                    username "$artifactoryUsername"
-                    password "$artifactoryPassword"
-                }
-            }
-        }
-    }
-
     repositories {
         mavenLocal()
-        maven {
-            url "https://artifactory.reseguiden.se/artifactory/libs-release"
-            credentials {
-                username "$artifactoryUsername"
-                password "$artifactoryPassword"
-            }
-        }
+        mavenCentral()
     }
 }

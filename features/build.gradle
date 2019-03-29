@@ -6,7 +6,11 @@ apply plugin: 'com.github.lburgazzoli.karaf'
 
 configurations {
     testIgniteCore
+    testIgnitePrerequisite
 }
+
+
+//https://github.com/apache/karaf/blob/master/features/core/src/main/resources/org/apache/karaf/features/karaf-features-1.3.0.xsd
 
 karaf {
     features {
@@ -16,10 +20,29 @@ karaf {
         repository "mvn:org.apache.ignite/ignite-osgi-karaf/${igniteVersion}/xml/features"
 
         feature {
+            name = 'ki-test-prerequisite'
+            configuration 'testIgnitePrerequisite'
+
+            feature 'scr'
+
+//            bundle('org.apache.ignite:ignite-osgi') {
+//                attribute 'start','false'
+//                //attribute 'start-level', '40'
+//            }
+//
+//            bundle('ignite-core') {
+//                //attribute 'start','false'
+//            }
+        }
+
+        feature {
             name = 'ki-test-core'
             description = 'graphql core sandbox'
             configuration 'testIgniteCore'
 
+            //feature('ki-test-prerequisite') {
+            //    prerequisite = true
+            //}
 
             feature 'scr'
             feature 'camel-core'
@@ -32,8 +55,7 @@ karaf {
             feature 'pax-jdbc-postgresql'
             feature 'pax-jdbc-pool-hikaricp'
 
-            feature 'ignite-core'
-
+            //feature 'ignite-camel'
 
             //feature('graphql-indexing') {
             //    dependency = true
@@ -56,6 +78,9 @@ description = 'testIgnite-features'
 
 dependencies {
     testIgniteCore    (project(':ki-test-core')) {
+        exclude group: 'se.reseguiden.gate'
+    }
+    testIgnitePrerequisite    (project(':ki-test-prerequisite')) {
         exclude group: 'se.reseguiden.gate'
     }
 }

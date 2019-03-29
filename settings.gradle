@@ -1,7 +1,11 @@
 rootProject.name = 'parent'
 include ':ki-test-core'
 include ':ki-test-features'
+include ':ki-test-prerequisite'
+include ':ignite-osgi-graphql'
 
 project(':ki-test-core').projectDir = "$rootDir/core" as File
 project(':ki-test-features').projectDir = "$rootDir/features" as File
+project(':ki-test-prerequisite').projectDir = "$rootDir/prerequisite" as File
+project(':ignite-osgi-graphql').projectDir = "$rootDir/ignite-osgi" as File
 

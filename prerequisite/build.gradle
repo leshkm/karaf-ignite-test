@@ -1,0 +1,53 @@
+description = 'prerequisite'
+
+configurations {
+    implementation {
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-impl'
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-core'
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
+}
+
+dependencies {
+
+//    implementation project(':ki-test-frb-abnd')
+//    implementation project(':ki-test-frb-bnd')
+
+
+    //implementation(group: 'org.apache.ignite', name: 'ignite-osgi', version: igniteVersion) {
+    implementation project(':ignite-osgi-graphql') {
+        //exclude group: 'org.apache.ignite', module: 'ignite-core'
+        //exclude group: 'org.osgi'
+    }
+    implementation(group: 'org.apache.ignite', name: 'ignite-core', version: igniteVersion)
+
+    implementation group: 'javax.cache', name: 'cache-api', version: '1.1.0'
+
+    ///////////////////////////////////////////////////////////////////////
+    // osgi framework
+    ///////////////////////////////////////////////////////////////////////
+
+    compileOnly group: 'org.osgi', name: 'osgi.core', version: osgiCoreVersion
+    compileOnly group: 'org.osgi', name: 'osgi.cmpn', version: osgiCompendiumVersion
+
+    compileOnly group: 'org.osgi', name: 'org.osgi.service.async', version: '1.0.0'
+    compileOnly group: 'org.ops4j.pax.logging', name: 'pax-logging-api', version: paxLoggingVersion
+
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+jar {
+    manifest {
+        attributes(
+                '-noee': 'true',
+                '-exportcontents': '*',
+                // TODO SHRINK ME
+                //'Bundle-Activator': 'ua.mohylin.test.ignite.prerequisite.PrerequisiteActivator',
+                'Import-Package': '''
+                *
+            '''
+        )
+    }
+}

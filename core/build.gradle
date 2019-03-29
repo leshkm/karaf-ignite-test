@@ -41,10 +41,14 @@ dependencies {
     ///////////////////////////////////////////////////////////////////////
 
 
-    implementation group: 'org.apache.ignite', name: 'ignite-osgi', version: igniteVersion
+    //implementation group: 'org.apache.ignite', name: 'ignite-osgi', version: igniteVersion
+
+    implementation project(':ignite-osgi-graphql')
+
     implementation(group: 'org.apache.ignite', name: 'ignite-core', version: igniteVersion) {
         exclude group: 'org.osgi' // provided by osgi runtime
     }
+
     //implementation project(':ignite-osgi-fork') {
     //    //exclude group: 'org.osgi' // provided by osgi runtime
     //}
@@ -114,7 +118,7 @@ dependencies {
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: commonsLang3Version
     implementation group: 'commons-io', name: 'commons-io', version: commonsIOVersion
 
-    implementation group: 'org.jooq', name: 'jool', version: '0.9.13'
+    implementation group: 'org.jooq', name: 'jool', version: '0.9.10'
     //    implementation group: 'one.util', name: 'streamex', version: '0.6.7'
     //    implementation group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
 
@@ -169,6 +173,7 @@ jar {
                 org.apache.ignite.internal.processors.datastructures,
                 org.apache.ignite.internal.processors.igfs,
                 org.apache.ignite.internal.processors.resource,
+                org.apache.ignite.internal.processors.cluster,
                 org.apache.ignite.internal.util,
                 org.apache.ignite.internal.util.typedef,
                 org.apache.ignite.internal.util.typedef.internal,
@@ -178,6 +183,7 @@ jar {
                 org.apache.ignite.marshaller,
                 org.apache.ignite.marshaller.jdk,
                 org.apache.ignite.mxbean,
+                org.apache.ignite.osgi,
                 org.apache.ignite.plugin,
                 org.apache.ignite.plugin.segmentation,
                 org.apache.ignite.resources,
