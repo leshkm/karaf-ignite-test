@@ -1,5 +1,20 @@
 This project made to help with debugging problem with Ignite 2.7.0 in Karaf 4.2.0.
 
+---
+
+ISSUE 2 - 
+
+Two of these processes cannot create cluster. 
+Problem lays in org.apache.ignite.internal.processors.cluster.GridClusterStateProcessor.validateNode
+
+When it tries to unmarshal joining node data, it uses `Thread.currentThread().getContextClassLoader()`
+ to obtain classloader. This returns system classloader `jdk.internal.loader.ClassLoaders$AppClassLoader` and not bundle classloader created in  `IgniteAbstractOsgiContextActivator.start()`.
+
+Of course, system classloader doesn't know anything about classes from ignite-osgi bundle....
+
+--- 
+Solved ISSUE - Solved by adding ignite-osgi and changing build process not to include classloaders folder into import. 
+
 During initial start this configuration performs fine (see karaf_log_install.log for full log). 
 
     karaf@root()> feature:list | grep "Started"
