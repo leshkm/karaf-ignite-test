@@ -11,6 +11,11 @@ When it tries to unmarshal joining node data, it uses `Thread.currentThread().ge
  to obtain classloader. This returns system classloader `jdk.internal.loader.ClassLoaders$AppClassLoader` and not bundle classloader created in  `IgniteAbstractOsgiContextActivator.start()`.
 
 Of course, system classloader doesn't know anything about classes from ignite-osgi bundle....
+This is the exception:
+
+    Error on unmarshalling discovery data from node 10.0.2.15,127.0.0.1,172.17.0.1:47501: Failed to find class with given class loader for unmarshalling (make sure same versions of all classes are available on all nodes or enable peer-class-loading) [clsLdr=jdk.internal.loader.ClassLoaders$AppClassLoader@5c0369c4, cls=org.apache.ignite.internal.processors.cluster.DiscoveryDataClusterState]; node is not allowed to join
+
+When in debug from IDEA I use proper classloader stored in `IgniteOsgiUtils.CLASSLOADERS`, unmarshalling works without any problem.  
 
 --- 
 Solved ISSUE - Solved by adding ignite-osgi and changing build process not to include classloaders folder into import. 
