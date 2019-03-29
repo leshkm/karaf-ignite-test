@@ -114,7 +114,7 @@ public class IgniteLifecycleComponent extends IgniteAbstractOsgiContextActivator
 
         igniteConfiguration.setFailureDetectionTimeout(60000);
 
-        igniteConfiguration.setClientMode(true);
+        igniteConfiguration.setClientMode(false);
         igniteConfiguration.setDaemon(false);
 
         CommunicationSpi commSpi = new TcpCommunicationSpi();
